@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+#define GLOG_MAX_MSG_BUF 1024 * 32
+
 struct glog__logger {
 	FILE** out_streams;
 	size_t out_stream_count;
