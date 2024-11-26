@@ -61,17 +61,20 @@ void glog__putf(const struct glog__logger* logger, const struct glog__logging_le
 	va_list args;
 	va_start(args, fmt);
 
-	char buf[GLOG_MAX_MSG_BUF] = {0};
-	vsnprintf(buf, sizeof(buf), fmt, args);
+	char msg[GLOG_MAX_MSG_BUF] = {0};
+	vsnprintf(msg, sizeof(msg), fmt, args);
 
 	va_end(args);
 
 	time_t t = time(NULL);
 	struct tm* lt = localtime(&t);
 
+	char datetime[GLOG_MAX_DATE_BUF] = {0};
+	strftime(datetime, sizeof(datetime), "%Y:%m:%d %H:%M:%S", lt);
+
 	for (int i = 0; i < logger->out_stream_count; i++) {
-		fprintf(logger->out_streams[i], logger->format, asctime(lt), logger->prefix, level->name,
-				buf);
+		fprintf(logger->out_streams[i], logger->format, datetime, logger->prefix, level->name,
+				msg);
 	}
 
 	if (level->handler != NULL) level->handler();

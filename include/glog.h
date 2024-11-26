@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 #define GLOG_MAX_MSG_BUF 1024 * 32
+#define GLOG_MAX_DATE_BUF 128
 
 struct glog__logger {
 	FILE** out_streams;
