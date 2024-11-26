@@ -74,7 +74,7 @@ void glog__putf(const struct glog__logger* logger, const struct glog__logging_le
 				buf);
 	}
 
-	level->handler();
+	if (level->handler != NULL) level->handler();
 }
 
 static void die_handler(void)
