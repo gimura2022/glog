@@ -26,14 +26,14 @@ void glog__init(void);
 
 void glog__logger_from_prefix(struct glog__logger* logger, const char* prefix);
 
-extern glog__logging_level glog__chaos_level;
-extern glog__logging_level glog__trace_level;
-extern glog__logging_level glog__debug_level;
-extern glog__logging_level glog__info_level;
-extern glog__logging_level glog__warn_level;
-extern glog__logging_level glog__error_level;
-extern glog__logging_level glog__die_level;
-extern glog__logging_level glog__unreachable_level;
+extern struct glog__logging_level glog__chaos_level;
+extern struct glog__logging_level glog__trace_level;
+extern struct glog__logging_level glog__debug_level;
+extern struct glog__logging_level glog__info_level;
+extern struct glog__logging_level glog__warn_level;
+extern struct glog__logging_level glog__error_level;
+extern struct glog__logging_level glog__die_level;
+extern struct glog__logging_level glog__unreachable_level;
 
 void glog__putf(const struct glog__logger* logger, const struct glog__logging_level* level,
 	const char* fmt, ...);
