@@ -10,6 +10,8 @@ struct glog__logger {
 
 	const char* prefix;
 	const char* format;
+
+	int min_log_level;
 };
 
 typedef void (*glog__logging_level_handler_t)(void);
@@ -21,9 +23,7 @@ struct glog__logging_level {
 	glog__logging_level_handler_t handler;
 };
 
-extern int glog__min_log_level;
 void glog__init(void);
-
 void glog__logger_from_prefix(struct glog__logger* logger, const char* prefix);
 
 extern struct glog__logging_level glog__chaos_level;
