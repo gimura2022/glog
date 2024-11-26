@@ -4,18 +4,20 @@
 #include <string.h>
 #include <time.h>
 
-#include "glog.h"
+#include <glog.h>
 
-static const char* default_format = "[%s][%s][%s] %s";
+static const char* default_format = GLOG_COLOR_DARK_GRAY "[" GLOG_COLOR_LIGHT_GRAY "%s" GLOG_COLOR_DARK_GRAY
+	"][" GLOG_COLOR_LIGHT_GRAY "%s" GLOG_COLOR_DARK_GRAY "][" GLOG_COLOR_LIGHT_GRAY "%s"
+	GLOG_COLOR_DARK_GRAY "] " GLOG_COLOR_LIGHT_GRAY "%s" GLOG_COLOR_RESET;
 
-static const char* chaos_name       = "CHAOS";
-static const char* trace_name       = "TRACE";
-static const char* debug_name       = "DEBUG";
-static const char* info_name        = "INFO";
-static const char* warn_name        = "WARN";
-static const char* error_name       = "ERROR";
-static const char* die_name         = "DIE";
-static const char* unreachable_name = "UNREACHABLE";
+static const char* chaos_name       = GLOG_COLOR_DARK_LIGHT_BLUE "CHAOS" GLOG_COLOR_RESET;
+static const char* trace_name       = GLOG_COLOR_LIGHT_BLUE "TRACE" GLOG_COLOR_RESET;
+static const char* debug_name       = GLOG_COLOR_BLUE "DEBUG" GLOG_COLOR_RESET;
+static const char* info_name        = GLOG_COLOR_GREEN "INFO" GLOG_COLOR_RESET;
+static const char* warn_name        = GLOG_COLOR_DARK_YELLOW "WARN" GLOG_COLOR_RESET;
+static const char* error_name       = GLOG_COLOR_RED "ERROR" GLOG_COLOR_RESET;
+static const char* die_name         = GLOG_COLOR_DARK_RED "DIE" GLOG_COLOR_RESET;
+static const char* unreachable_name = GLOG_COLOR_WHITE "UNREACHABLE" GLOG_COLOR_RESET;
 
 struct glog__logging_level glog__chaos_level       = {0};
 struct glog__logging_level glog__trace_level       = {0};
@@ -82,12 +84,12 @@ void glog__putf(const struct glog__logger* logger, const struct glog__logging_le
 
 static void die_handler(void)
 {
-	fputs("Detected die message. Abort.", stderr);
+	fputs("Detected die message.\n", stderr);
 	abort();
 }
 
 static void unreachable_handler(void)
 {
-	fputs("Detected unreachable situation. Abort.", stderr);
+	fputs("Detected unreachable situation.\n", stderr);
 	abort();
 }
