@@ -12,6 +12,8 @@ static const char* cflags_deb = " -O0 -g -DDEBUG ";
 
 static const char* cppflags = " -I include ";
 
+static const char* ldflags = " -fPIC ";
+
 static const char* libname = "glog";
 
 static char* cc = "cc";
@@ -40,6 +42,7 @@ static void compile(void)
 {
 	strcat(cflags_out, cflags);
 	strcat(cppflags_out, cppflags);
+	strcat(ldflags_out, ldflags);
 
 	struct gnub__cmd_arr compile_commands = {0};
 
