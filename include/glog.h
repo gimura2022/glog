@@ -3,10 +3,9 @@
 
 #include <stdio.h>
 
-#define GLOG_MAX_OUT_STREAMS 16
-
 struct glog__logger {
-	FILE* out_streams[GLOG_MAX_OUT_STREAMS];
+	FILE** out_streams;
+	size_t out_stream_count;
 
 	const char* prefix;
 	const char* format;
