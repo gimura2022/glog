@@ -70,6 +70,16 @@ void glog__putf(const struct glog__logger* logger, const struct glog__logging_le
 #	define glog__debugf(logger, fmt, ...) glog__putf(logger, &glog__debug_level, fmt, __VA_ARGS__)
 #	define glog__unreachablef(logger, fmt, ...) glog__putf(logger, &glog__unreachable_level, fmt, \
 		__VA_ARGS__)
+#else
+#	define glog__chaos(logger, fmt) 
+#	define glog__trace(logger, fmt) 
+#	define glog__debug(logger, fmt) 
+#	define glog__unreachable(logger, fmt) 
+
+#	define glog__chaosf(logger, fmt, ...) 
+#	define glog__tracef(logger, fmt, ...) 
+#	define glog__debugf(logger, fmt, ...) 
+#	define glog__unreachablef(logger, fmt, ...) 
 #endif
 
 #define glog__info(logger, fmt) glog__putf(logger, &glog__info_level, fmt)
