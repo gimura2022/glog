@@ -6,9 +6,9 @@
 #define gnub_impl
 #include "gnub.h"
 
-static const char* cflags     = " -std=c99 -Wall -Wpedantic ";
+static const char* cflags     = " -std=c99 -Wall -Wno-unused-parameter -Wno-unused-function ";
 static const char* cflags_rel = " -O3 -DRELEASE ";
-static const char* cflags_deb = " -O0 -g -DDEBUG ";
+static const char* cflags_deb = " -O0 -g3 -fsanitize=undefined -fsanitize=address -fsanitize-trap -DDEBUG ";
 
 static const char* cppflags = " -I include ";
 
@@ -74,7 +74,7 @@ static void release(void)
 static void install(void)
 {
 	struct gnub__cmd_arr arr = {0};
-	gnub__install_lib(&arr, libname, prefix, 0, "./include/");
+	gnub__install_lib(&arr, libname, prefix, 0, "./include/", "");
 	gnub__execute_commands(&arr);
 	gnub__free_commands(&arr);
 }
