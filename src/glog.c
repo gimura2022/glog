@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
 #include <time.h>
 #include <sys/types.h>
@@ -39,6 +40,9 @@ static void unreachable_handler(void);
 
 void glog__init(void)
 {
+	static bool is_inited = false;
+	if (is_inited) return;
+
 	glog__chaos_level       = (struct glog__logging_level) {.level = -300, .handler = NULL, .name                = chaos_name};
 	glog__trace_level       = (struct glog__logging_level) {.level = -200, .handler = NULL, .name                = trace_name};
 	glog__debug_level       = (struct glog__logging_level) {.level = -100, .handler = NULL, .name                = debug_name};
@@ -47,6 +51,8 @@ void glog__init(void)
 	glog__error_level       = (struct glog__logging_level) {.level = 200, .handler  = NULL, .name                = error_name};
 	glog__die_level         = (struct glog__logging_level) {.level = 1000, .handler = die_handler, .name         = die_name};
 	glog__unreachable_level = (struct glog__logging_level) {.level = 2000, .handler = unreachable_handler, .name = unreachable_name};
+
+	is_inited = true;
 }
 
 void glog__logger_from_prefix(struct glog__logger* logger, const char* prefix)
