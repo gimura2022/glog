@@ -75,6 +75,12 @@ static void install(void)
 {
 	struct gnub__cmd_arr arr = {0};
 	gnub__install_lib(&arr, libname, prefix, 0, "./include/", "");
+
+	char buf[256] = {0};
+	strcat(buf, prefix);
+	strcat(buf, "/share/man/man3/");
+	gnub__append_command(&arr, "install -m644 man/*.3", buf);
+
 	gnub__execute_commands(&arr);
 	gnub__free_commands(&arr);
 }
