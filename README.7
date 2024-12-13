@@ -1,0 +1,32 @@
+./ mandoc -Tascii README.7 | col -b > README
+.Dd December 13 2024
+.Dt LIBGLOG 7
+.Os
+.
+.Sh NAME
+.Nm libglog
+.Nd Logging library
+.
+.Sh SYNOPSIS
+.In glog
+.
+.Sh DESCRIPTION
+This library provides text output to console with logging formating.
+.
+.Sh EXAMPLES
+You can use this library for:
+.Bl -bullet
+.It
+Debugging (debug messanges)
+.It
+Improve user expiriance (users can see important information and filtring debug messanges)
+.El
+.Pp
+Or see file
+.Pa example.c
+.
+.Sh SEE ALSO
+.Xr libglog 3
+.
+.Sh AUTHORS
+.An gimura2022 Aq Mt gimura0001@gmail.com

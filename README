@@ -1,0 +1,28 @@
+LIBGLOG(7)	       Miscellaneous Information Manual		    LIBGLOG(7)
+
+NAME
+     libglog - Logging library
+
+SYNOPSIS
+     #include <glog>
+
+DESCRIPTION
+     This library provides text output to console with logging formating.
+
+EXAMPLES
+     You can use this library for:
+
+     o	 Debugging (debug messanges)
+
+     o	 Improve user expiriance (users can see important information and
+	 filtring debug messanges)
+
+     Or see file example.c
+
+SEE ALSO
+     libglog(3)
+
+AUTHORS
+     gimura2022 <gimura0001@gmail.com>
+
+Debian			       December 13 2024				Debian
