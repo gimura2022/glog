@@ -1,13 +1,19 @@
+#define _GNU_SOURCE
+
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <sys/types.h>
+#include <sys/syscall.h>
+#include <unistd.h>
 
-#include <glog.h>
+#include "glog.h"
 
 static const char* default_format = GLOG_COLOR_DARK_GRAY "[" GLOG_COLOR_LIGHT_GRAY "%s" GLOG_COLOR_DARK_GRAY
-	"][" GLOG_COLOR_LIGHT_GRAY "%s" GLOG_COLOR_DARK_GRAY "][" GLOG_COLOR_LIGHT_GRAY "%s"
+	"][" GLOG_COLOR_LIGHT_GRAY "thread: %i" GLOG_COLOR_DARK_GRAY "][" GLOG_COLOR_LIGHT_GRAY "%s"
+	GLOG_COLOR_DARK_GRAY "][" GLOG_COLOR_LIGHT_GRAY "%s"
 	GLOG_COLOR_DARK_GRAY "] " GLOG_COLOR_LIGHT_GRAY "%s" GLOG_COLOR_RESET "\n";
 
 static const char* chaos_name       = GLOG_COLOR_DARK_LIGHT_BLUE "CHAOS" GLOG_COLOR_RESET;
@@ -74,8 +80,10 @@ void glog__putf(const struct glog__logger* logger, const struct glog__logging_le
 	char datetime[GLOG_MAX_DATE_BUF] = {0};
 	strftime(datetime, sizeof(datetime), "%Y:%m:%d %H:%M:%S", lt);
 
+	pid_t tid = syscall(SYS_gettid);
+
 	for (int i = 0; i < logger->out_stream_count; i++) {
-		fprintf(logger->out_streams[i], logger->format, datetime, logger->prefix, level->name,
+		fprintf(logger->out_streams[i], logger->format, datetime, tid, logger->prefix, level->name,
 				msg);
 	}
 
