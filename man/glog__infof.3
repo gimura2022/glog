@@ -1,0 +1,62 @@
+.Dd December 13 2024
+.Dt libglog 3
+.Os
+.
+.Sh NAME
+.Nm glog__info
+.Nd Print formated message to info level
+.
+.Sh LIBRARY
+.Xr libglog 3
+(-lglog)
+.
+.Sh SYNOPSIS
+.In glog.h
+.Bd -literal
+#define glog__infof(logger, fmt, ...) glog__putf(logger, &glog__info_level, fmt, __VA_ARGS__)
+.Ed
+.
+.Sh DESCRIPTION
+Print formated message to info level.
+.Pp
+Info logging level is 0
+.Pp
+Print to info level notces about important process.
+.
+.Sh EXAMPLES
+.Bd -literal
+#include <glog.h>
+
+int main()
+{
+	struct glog__logger logger = {0};
+	glog__logger_from_prefix(&logger, "logger");
+
+	glog__infof(&logger, "Info message %i", 0);
+
+	return 0;
+}
+.Ed
+.
+.Sh SEE ALSO
+.Xr libglog 3
+.Xr glog__chaos 3
+.Xr glog__chaosf 3
+.Xr glog__trace 3
+.Xr glog__tracef 3
+.Xr glog__debug 3
+.Xr glog__debugf 3
+.Xr glog__info 3
+.Xr glog__infof 3
+.Xr glog__warn 3
+.Xr glog__warnf 3
+.Xr glog__error 3
+.Xr glog__errorf 3
+.Xr glog__die 3
+.Xr glog__dief 3
+.Xr glog__unreachable 3
+.Xr glog__unreachablef 3
+.Xr glog__logger_from_prefix 3
+.
+.Sh AUTHORS
+.An gimura2022 Aq Mt gimura0001@gmail.com

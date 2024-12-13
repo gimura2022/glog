@@ -1,0 +1,47 @@
+.Dd December 13 2024
+.Dt libglog 3
+.Os
+.
+.Sh NAME
+.Nm glog__init
+.Nd Init
+.Xr libglog 3
+.
+.Sh LIBRARY
+.Xr libglog 3
+(-lglog)
+.
+.Sh SYNOPSIS
+.In glog.h
+.Ft "void"
+.Fo glog__init
+.Fa "void"
+.Fc
+.
+.Sh DESCRIPTION
+Init
+.Xr libglog 3
+.
+.Sh EXAMPLES
+.Bd -literal
+#include <glog.h>
+
+int main()
+{
+	glog__init();
+	return 0;
+}
+.Ed
+.
+.Sh NOTES
+This function not required for calling,
+in first call
+.Xr glog__putf 3
+glog__init calling automaticly.
+.
+.Sh SEE ALSO
+.Xr libglog 3
+.Xr glog__putf 3
+.
+.Sh AUTHORS
+.An gimura2022 Aq Mt gimura0001@gmail.com

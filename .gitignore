@@ -1,6 +1,7 @@
 *.o
 gnub
-lib*.*
+lib*.so
+lib*.a
 
 compile_commands.json
 

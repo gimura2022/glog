@@ -1,0 +1,40 @@
+.Dd December 13 2024
+.Dt libglog 3
+.Os
+.
+.Sh NAME
+.Nm glog__logger_from_prefix
+.Nd Create logger from name
+.
+.Sh LIBRARY
+.Xr libglog 3
+(-lglog)
+.
+.Sh SYNOPSIS
+.In glog.h
+.Ft "void"
+.Fo glog__logger_from_prefix
+.Fa "struct glog__logger* logger"
+.Fa "const char* prefix"
+.Fc
+.
+.Sh DESCRIPTION
+Create logger from name.
+.
+.Sh EXAMPLES
+.Bd -literal
+#include <glog.h>
+
+int main()
+{
+	struct glog__logger logger = {0};
+	glog__logger_from_prefix(&logger, "logger");
+	return 0;
+}
+.Ed
+.
+.Sh SEE ALSO
+.Xr libglog 3
+.
+.Sh AUTHORS
+.An gimura2022 Aq Mt gimura0001@gmail.com

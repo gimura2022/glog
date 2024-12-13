@@ -59,7 +59,7 @@ extern struct glog__logging_level glog__unreachable_level;
 void glog__putf(const struct glog__logger* logger, const struct glog__logging_level* level,
 	const char* fmt, ...);
 
-#ifndef RELEASE
+#ifdef DEBUG
 #	define glog__chaos(logger, fmt) glog__putf(logger, &glog__chaos_level, fmt)
 #	define glog__trace(logger, fmt) glog__putf(logger, &glog__trace_level, fmt)
 #	define glog__debug(logger, fmt) glog__putf(logger, &glog__debug_level, fmt)

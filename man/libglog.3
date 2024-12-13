@@ -1,0 +1,86 @@
+.Dd December 13 2024
+.Dt libglog 3
+.Os
+.
+.Sh NAME
+.Nm libglog
+.Nd Logging library
+.
+.Sh LIBRARY
+libglog (-lglog)
+.
+.Sh SYNOPSIS
+.In glog.h
+.Ft "void"
+.Fo glog__init
+.Fa "void"
+.Fc
+.Ft "void"
+.Fo glog__logger_from_prefix
+.Fa "struct glog__logger* logger"
+.Fa "const char* prefix"
+.Fc
+.Ft "void"
+.Fo glog__putf
+.Fa "const struct glog__logger* logger"
+.Fa "const struct glog__logging_level* level"
+.Fa "const char* fmt"
+.Fa "..."
+.Fc
+.Bd -literal
+#define glog__chaos(logger, fmt) glog__putf(logger, &glog__chaos_level, fmt)
+#define glog__trace(logger, fmt) glog__putf(logger, &glog__trace_level, fmt)
+#define glog__debug(logger, fmt) glog__putf(logger, &glog__debug_level, fmt)
+#define glog__unreachable(logger, fmt) glog__putf(logger, &glog__unreachable_level, fmt)
+
+#define glog__chaosf(logger, fmt, ...) glog__putf(logger, &glog__chaos_level, fmt, __VA_ARGS__)
+#define glog__tracef(logger, fmt, ...) glog__putf(logger, &glog__trace_level, fmt, __VA_ARGS__)
+#define glog__debugf(logger, fmt, ...) glog__putf(logger, &glog__debug_level, fmt, __VA_ARGS__)
+#define glog__unreachablef(logger, fmt, ...) glog__putf(logger, &glog__unreachable_level, fmt, __VA_ARGS__)
+
+#define glog__info(logger, fmt) glog__putf(logger, &glog__info_level, fmt)
+#define glog__warn(logger, fmt) glog__putf(logger, &glog__warn_level, fmt)
+#define glog__error(logger, fmt) glog__putf(logger, &glog__error_level, fmt)
+#define glog__die(logger, fmt) glog__putf(logger, &glog__die_level, fmt)
+
+#define glog__infof(logger, fmt, ...) glog__putf(logger, &glog__info_level, fmt, __VA_ARGS__)
+#define glog__warnf(logger, fmt, ...) glog__putf(logger, &glog__warn_level, fmt, __VA_ARGS__)
+#define glog__errorf(logger, fmt, ...) glog__putf(logger, &glog__error_level, fmt, __VA_ARGS__)
+#define glog__dief(logger, fmt, ...) glog__putf(logger, &glog__die_level, fmt, __VA_ARGS__)
+.Ed
+.
+.Sh DESCRIPTION
+Library for logging.
+.Pp
+For information about logging levels see
+.Xr libglog_loglevels 7
+.Pp
+Default log formating is: [<data time>][<thread>][<logger name>][<logging level>] <message>
+.
+.Sh SEE ALSO
+.Xr glog__init 3
+.Xr glog__logger_from_prefix 3
+.Xr glog__putf 3
+.Xr glog__chaos 3
+.Xr glog__chaosf 3
+.Xr glog__trace 3
+.Xr glog__tracef 3
+.Xr glog__debug 3
+.Xr glog__debugf 3
+.Xr glog__info 3
+.Xr glog__infof 3
+.Xr glog__warn 3
+.Xr glog__warnf 3
+.Xr glog__error 3
+.Xr glog__errorf 3
+.Xr glog__die 3
+.Xr glog__dief 3
+.Xr glog__unreachable 3
+.Xr glog__unreachablef 3
+.
+.Sh EXAMPLES
+See file
+.Pa example.c
+.
+.Sh AUTHORS
+.An gimura2022 Aq Mt gimura0001@gmail.com
